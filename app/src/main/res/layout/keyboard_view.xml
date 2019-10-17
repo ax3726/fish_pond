@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_d1"
+    android:padding="@dimen/dp_6">
+
+    <com.gofishfarm.htkj.custom.CustomKeyboardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/keyview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:keyBackground="@color/color_d1"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:shadowRadius="0"
+        />
+
+</android.support.constraint.ConstraintLayout>

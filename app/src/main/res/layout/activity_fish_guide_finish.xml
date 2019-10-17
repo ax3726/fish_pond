@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/newer_guide_bg"
+    tools:context=".ui.main.fishingpage.FishGuideFinishActivity">
+
+    <ImageView
+        android:id="@+id/iv_top"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/baodian"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_center"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_80"
+        android:layout_marginLeft="@dimen/dp_40"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="@dimen/dp_40"
+        android:src="@drawable/fish_guide_finish"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_top" />
+
+    <TextView
+        android:id="@+id/tv_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_20"
+        android:gravity="center"
+        android:text=""
+        android:textSize="@dimen/dp_25"
+        app:layout_constraintTop_toBottomOf="@+id/iv_center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_50"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp_20"
+        android:paddingRight="@dimen/dp_20"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_bottom">
+
+        <Button
+            android:id="@+id/btn_one"
+            android:layout_width="130dp"
+            android:layout_height="@dimen/dp_50"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/dp_40"
+            android:background="@drawable/button_one"
+            android:src="@drawable/button_one"
+            android:text="@string/fish_guide_lean_more"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/btn_two"
+            android:layout_width="130dp"
+            android:layout_height="@dimen/dp_50"
+            android:layout_gravity="center"
+            android:background="@drawable/button_tow"
+            android:src="@drawable/button_one"
+            android:text="@string/fish_direct"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

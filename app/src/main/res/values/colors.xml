@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="color_d1">#d1d1d1</color>
+    <color name="color_d8">#d8d8d8</color>
+    <color name="color_66">#666666</color>
+    <color name="color_d1d6">#d1d6da</color>
+    <color name="color_ff2">#FF2F2F</color>
+
+    <color name="color_feb">#FEB415</color>
+    <color name="color_fe7">#FE7815</color>
+    <color name="color_df6">#DF6138</color>
+    <color name="color_9e3">#F9E300</color>
+    <color name="color_df3">#FFFDF3</color>
+    <color name="color_dc">#DCDCDC</color>
+    <color name="color_ef">#EFEFEF</color>
+    <color name="color_fe">#FE7815</color>
+    <color name="color_99">#999999</color>
+    <color name="color_56">#F56F0A</color>
+    <color name="color_ff_thirty">#4dffffff</color>
+
+    <color name="pickerview_bgColor_overlay">#60000000</color>
+    <color name="border_333">#333333</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="font_black">#ff333333</color>
+    <color name="font_gray">#999999</color>
+    <color name="font_red">#FF2F2F</color>
+    <color name="font_green">#15CE15</color>
+    <color name="theme_gray">#EFEFEF</color>
+    <color name="theme_gray_alpha">#99EFEFEF</color>
+    <color name="theme_yellow">#FE7815</color>
+    <color name="theme_alpha_yellow">#4DFE7815</color>
+    <color name="theme_alpha_black">#33000000</color>
+
+    <color name="float_transparent">#00000000</color>
+    <color name="sweet_dialog_bg_color">#FFFFFF</color>
+    <color name="button_text_color">#FFFFFF</color>
+    <color name="gray_btn_bg_color">#D0D0D0</color>
+    <color name="gray_btn_bg_pressed_color">#B6B6B6</color>
+    <color name="blue_btn_bg_color">#AEDEF4</color>
+    <color name="blue_btn_bg_pressed_color">#96BFD2</color>
+    <color name="red_btn_bg_color">#DD6B55</color>
+    <color name="red_btn_bg_pressed_color">#CD5B55</color>
+    <color name="error_stroke_color">#F27474</color>
+    <color name="success_stroke_color">#A5DC86</color>
+    <color name="trans_success_stroke_color">#33A5DC86</color>
+    <color name="warning_stroke_color">#F8BB86</color>
+    <color name="text_color">#575757</color>
+    <color name="material_blue_grey_80">#ff37474f</color>
+    <color name="material_blue_grey_90">#ff263238</color>
+    <color name="material_blue_grey_95">#ff21272b</color>
+    <color name="material_deep_teal_20">#ff80cbc4</color>
+    <color name="material_deep_teal_50">#ff009688</color>
+    <color name="fish_nums">#ffe958</color>
+    <color name="dim_color">#66000000</color>
+
+    <color name="white_alpha">#80ffffff</color>
+    <!--<color name="black_alpha">#80B4BDC4</color>-->
+    <color name="black_alpha">#82121013</color>
+
+    <!--仿ios弹窗颜色-->
+    <color name="line_default_color">#e5e5e5</color>
+    <color name="list_view_item_org">#f8f8f8</color>
+    <color name="list_view_item_white">#ffffff</color>
+    <color name="background_tab_pressed">#e5e5e5</color>
+    <color name="action_sheet_blue">#037BFF</color>
+
+    <color name="progress_btn_bg_yellow_alpha">#99FBA168</color>
+    <color name="progress_btn_bg_yellow">#FBA168</color>
+    <color name="progress_btn_bg_grey">#aeaeae</color>
+    <color name="progress_btn_ringbg_grey">#4dffffff</color>
+    <color name="progress_btn_ring_yellow">#FF8336</color>
+
+</resources>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".ui.main.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/activity_main_fl"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_0"
+        app:layout_constraintBottom_toTopOf="@+id/activity_main_cl"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--shape_line_shadow-->
+    <!--android:background="@drawable/ic_main_bg"-->
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/activity_main_cl"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <View
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:background="@drawable/shape_line_shadow"
+            android:layout_height="3dp"/>
+
+        <TextView
+            android:id="@+id/main_bottom_fishery"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/selector_home_bottom"
+            android:drawablePadding="@dimen/dp_5"
+            android:gravity="center"
+            android:paddingTop="@dimen/dp_11"
+            android:paddingBottom="@dimen/dp_11"
+            android:text="@string/fishery"
+            android:textColor="@drawable/selector_mian_text_bottom"
+            android:textSize="@dimen/sp_10"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/main_bottom_ranking" />
+
+        <TextView
+            android:id="@+id/main_bottom_ranking"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/selector_leaderboard_bottom"
+            android:drawablePadding="@dimen/dp_5"
+            android:gravity="center"
+            android:paddingTop="@dimen/dp_11"
+            android:paddingBottom="@dimen/dp_11"
+            android:text="榜单"
+            android:textColor="@drawable/selector_mian_text_bottom"
+            android:textSize="@dimen/sp_10"
+            app:layout_constraintLeft_toRightOf="@+id/main_bottom_fishery"
+            app:layout_constraintRight_toLeftOf="@+id/main_bottom_attention" />
+
+        <TextView
+            android:id="@+id/main_bottom_attention"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/selector_attention_bottom"
+            android:drawablePadding="@dimen/dp_5"
+            android:gravity="center"
+            android:paddingTop="@dimen/dp_11"
+            android:paddingBottom="@dimen/dp_11"
+            android:text="@string/attention1"
+            android:textColor="@drawable/selector_mian_text_bottom"
+            android:textSize="@dimen/sp_10"
+            app:layout_constraintLeft_toRightOf="@+id/main_bottom_ranking"
+            app:layout_constraintRight_toLeftOf="@+id/main_bottom_my" />
+
+        <TextView
+            android:id="@+id/main_bottom_my"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/selector_info_bottom"
+            android:drawablePadding="@dimen/dp_5"
+            android:gravity="center"
+            android:paddingTop="@dimen/dp_11"
+            android:paddingBottom="@dimen/dp_11"
+            android:text="我的"
+            android:textColor="@drawable/selector_mian_text_bottom"
+            android:textSize="@dimen/sp_10"
+            app:layout_constraintLeft_toRightOf="@+id/main_bottom_attention"
+            app:layout_constraintRight_toRightOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

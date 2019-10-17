@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/base_toolbar"/>
+
+    <ScrollView
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_0"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/if_top_cl"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_336"
+                android:background="@color/color_df3"
+                >
+
+                <ImageView
+                    android:id="@+id/if_bg_iv"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="@dimen/dp_336"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/yq_bg"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/if_title_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_38"
+                    android:src="@drawable/yq_text"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/if_handshake_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/yq_hand"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/if_title_iv"/>
+
+
+                <ImageView
+                    android:id="@+id/if_money_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:src="@drawable/yq_label"
+                    app:layout_constraintBottom_toBottomOf="@+id/if_money_tv"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/if_title_iv"
+                    app:layout_constraintTop_toTopOf="@+id/if_money_tv"/>
+
+                <TextView
+                    android:id="@+id/if_money_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:textColor="@color/color_9e3"
+                    android:textSize="@dimen/sp_31"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/if_title_iv"
+                    tools:text="200"
+                    />
+
+                <ImageView
+                    android:id="@+id/if_obtain_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_4"
+                    android:src="@drawable/yq_hongbao"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/if_handshake_iv"/>
+
+                <TextView
+                    android:id="@+id/if_obtain_tv"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_80"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/dp_20"
+                    android:paddingTop="@dimen/dp_17"
+                    android:paddingRight="@dimen/dp_20"
+                    android:paddingBottom="@dimen/dp_17"
+                    android:textColor="@color/color_df6"
+                    android:textSize="@dimen/sp_26"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="@+id/if_obtain_iv"
+                    app:layout_constraintRight_toRightOf="@+id/if_obtain_iv"
+                    app:layout_constraintTop_toBottomOf="@+id/if_handshake_iv"
+                    tools:text="300"/>
+
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_df3"
+                android:paddingBottom="@dimen/dp_23"
+                >
+
+                <ImageView
+                    android:id="@+id/if_share_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_29"
+                    android:src="@drawable/yq_ljyq"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <ImageView
+                    android:id="@+id/if_share_wechat_iv"
+                    android:layout_width="@dimen/dp_89"
+                    android:layout_height="@dimen/dp_95"
+                    android:layout_marginTop="@dimen/dp_23"
+                    android:src="@drawable/yp_wx"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/if_share_circle_iv"
+                    app:layout_constraintTop_toBottomOf="@+id/if_share_iv"/>
+
+                <ImageView
+                    android:id="@+id/if_share_circle_iv"
+                    android:layout_width="@dimen/dp_89"
+                    android:layout_height="@dimen/dp_95"
+                    android:layout_marginTop="@dimen/dp_23"
+                    android:src="@drawable/yp_pyq"
+                    app:layout_constraintLeft_toRightOf="@+id/if_share_wechat_iv"
+                    app:layout_constraintRight_toLeftOf="@+id/if_share_sina_iv"
+                    app:layout_constraintTop_toBottomOf="@+id/if_share_iv"/>
+
+                <ImageView
+                    android:id="@+id/if_share_sina_iv"
+                    android:layout_width="@dimen/dp_89"
+                    android:layout_height="@dimen/dp_95"
+                    android:layout_marginTop="@dimen/dp_23"
+                    android:src="@drawable/yp_wb"
+                    app:layout_constraintLeft_toRightOf="@+id/if_share_circle_iv"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/if_share_iv"/>
+
+                <ImageView
+                    android:id="@+id/if_share_qq_iv"
+                    android:layout_width="@dimen/dp_89"
+                    android:layout_height="@dimen/dp_95"
+                    android:layout_marginTop="@dimen/dp_23"
+                    android:src="@drawable/yp_qq"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/if_share_kj_iv"
+                    app:layout_constraintTop_toBottomOf="@+id/if_share_wechat_iv"/>
+
+                <ImageView
+                    android:id="@+id/if_share_kj_iv"
+                    android:layout_width="@dimen/dp_89"
+                    android:layout_height="@dimen/dp_95"
+                    android:layout_marginTop="@dimen/dp_23"
+                    android:src="@drawable/yp_kj"
+                    app:layout_constraintLeft_toRightOf="@+id/if_share_qq_iv"
+                    app:layout_constraintRight_toLeftOf="@+id/if_share_null_iv"
+                    app:layout_constraintTop_toBottomOf="@+id/if_share_wechat_iv"/>
+
+                <ImageView
+                    android:id="@+id/if_share_null_iv"
+                    android:layout_width="@dimen/dp_89"
+                    android:layout_height="@dimen/dp_95"
+                    android:layout_marginTop="@dimen/dp_23"
+                    android:src="@drawable/yp_wb"
+                    android:visibility="invisible"
+                    app:layout_constraintLeft_toRightOf="@+id/if_share_kj_iv"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/if_share_wechat_iv"/>
+
+
+            </android.support.constraint.ConstraintLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

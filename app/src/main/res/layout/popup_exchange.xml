@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_white_exchang_bg"
+    android:paddingBottom="@dimen/dp_30">
+
+
+    <RelativeLayout
+        android:id="@+id/exchange_bg_rl"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginLeft="@dimen/dp_29"
+        android:layout_marginTop="@dimen/dp_24"
+        android:background="@drawable/dh_dhj"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/pe_duration_voucher_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:singleLine="true"
+            android:text="@string/duration_voucher"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_9" />
+
+        <TextView
+            android:id="@+id/pe_description_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pe_duration_voucher_tv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_6"
+            android:singleLine="true"
+            android:text="3h/2000"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/dp_13" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/pe_hours_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_14"
+        android:layout_marginTop="@dimen/dp_31"
+        android:singleLine="true"
+        android:text="时长3小时"
+        android:textColor="@color/color_fe7"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintLeft_toRightOf="@+id/exchange_bg_rl"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pe_fishing_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_14"
+        android:layout_marginTop="@dimen/dp_5"
+        android:singleLine="true"
+        android:text="@string/fishing_coin_used"
+        android:textColor="@color/color_99"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintLeft_toRightOf="@+id/exchange_bg_rl"
+        app:layout_constraintTop_toBottomOf="@+id/pe_hours_tv" />
+
+    <TextView
+        android:id="@+id/pe_money_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:singleLine="true"
+        android:text="200"
+        android:textColor="@color/color_ff2"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintLeft_toRightOf="@+id/pe_fishing_tv"
+        app:layout_constraintTop_toBottomOf="@+id/pe_hours_tv" />
+
+    <View
+        android:id="@+id/pe_top_v"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_12"
+        android:layout_marginRight="@dimen/dp_15"
+        android:background="@color/color_ef"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exchange_bg_rl" />
+
+    <TextView
+        android:id="@+id/pe_redemption_quantity_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_15"
+        android:text="兑换数量"
+        android:textColor="@color/color_99"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pe_top_v" />
+
+    <TextView
+        android:id="@+id/pe_minus_tv"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_5"
+        android:background="@color/color_ef"
+        android:gravity="center"
+        android:text="-"
+        android:textColor="@color/color_99"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintRight_toLeftOf="@+id/pe_content_tv"
+        app:layout_constraintTop_toBottomOf="@+id/pe_top_v" />
+
+    <TextView
+        android:id="@+id/pe_content_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp_5"
+        android:background="@color/color_ef"
+        android:paddingLeft="@dimen/dp_18"
+        android:paddingTop="@dimen/dp_5"
+        android:paddingRight="@dimen/dp_18"
+        android:paddingBottom="@dimen/dp_5"
+        android:text="1"
+        android:textColor="@color/border_333"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintBottom_toBottomOf="@+id/pe_minus_tv"
+        app:layout_constraintRight_toLeftOf="@+id/pe_add_tv"
+        app:layout_constraintTop_toTopOf="@+id/pe_minus_tv" />
+
+    <TextView
+        android:id="@+id/pe_add_tv"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_15"
+        android:background="@color/color_ef"
+        android:gravity="center"
+        android:text="+"
+        android:textColor="@color/color_99"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pe_top_v" />
+
+    <View
+        android:id="@+id/pe_bottom_v"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_1"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_18"
+        android:layout_marginRight="@dimen/dp_15"
+        android:background="@color/color_ef"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pe_redemption_quantity_tv" />
+
+    <TextView
+        android:id="@+id/pe_error_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_16"
+        android:singleLine="true"
+        android:textColor="@color/font_red"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pe_bottom_v"
+        android:text="*渔币不足" />
+
+    <TextView
+        android:id="@+id/pe_confirm_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_27"
+        android:background="@drawable/shape_square_yellow_bg"
+        android:paddingLeft="@dimen/dp_53"
+        android:paddingTop="@dimen/dp_12"
+        android:paddingRight="@dimen/dp_53"
+        android:paddingBottom="@dimen/dp_13"
+        android:text="@string/confirm_exchange"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pe_error_tv" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--自定义键盘-->
+    <declare-styleable name="Keyboard">
+        <attr name="xml" format="reference" />
+    </declare-styleable>
+    <!--验证码的属性-->
+    <declare-styleable name="VerCodeEditText">
+        <!--几位数字-->
+        <attr name="figures" format="integer" />
+        <!--间隔距离-->
+        <attr name="verCodeMargin" format="dimension" />
+        <!--输入之后底部颜色-->
+        <attr name="bottomLineSelectedColor" format="reference" />
+        <!--默认底部颜色-->
+        <attr name="bottomLineNormalColor" format="reference" />
+        <!--底线的高度-->
+        <attr name="bottomLineHeight" format="dimension" />
+        <!--输入框背景颜色-->
+        <attr name="selectedBackgroundColor" format="reference" />
+
+        <attr name="key_xml" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="Rotate3dAnimation">
+        <attr name="rollType" format="enum">
+            <enum name="x" value="0" />
+            <enum name="y" value="1" />
+            <enum name="z" value="2" />
+        </attr>
+        <attr name="fromDeg" format="float" />
+        <attr name="toDeg" format="float" />
+        <attr name="pivotX" format="fraction" />
+        <attr name="pivotY" format="fraction" />
+    </declare-styleable>
+    <declare-styleable name="ProgressWheel">
+        <attr name="progressIndeterminate" format="boolean" />
+        <attr name="barColor" format="color" />
+        <attr name="rimColor" format="color" />
+        <attr name="rimWidth" format="dimension" />
+        <attr name="spinSpeed" format="float" />
+        <attr name="barSpinCycleTime" format="integer" />
+        <attr name="circleRadius" format="dimension" />
+        <attr name="fillRadius" format="boolean" />
+        <attr name="barWidth" format="dimension" />
+    </declare-styleable>
+
+    <!--自定义圆形TextView-->
+
+    <declare-styleable name="CustomShapTextView">
+        <!-- Default Paint Color (color). -->
+        <attr name="paintNormalColor" format="reference|color" />
+        <!-- Selected Paint Color (color). -->
+        <attr name="paintSelectColor" format="reference|color" />
+        <!--是否填充-->
+        <attr name="isFillColor" format="boolean"/>
+    </declare-styleable>
+
+    <!--圆弧进度条-->
+    <declare-styleable name="TasksCompletedView">
+        <!--进度的宽度-->
+        <attr name="radius" format="dimension" />
+        <!--进度条的宽度，包含在宽度中-->
+        <attr name="strokeWidth" format="dimension" />
+        <!--圆的背景-->
+        <attr name="circleColor" format="color" />
+        <!--原形背景颜色-->
+        <attr name="ringBgColor" format="color" />
+        <!--圆环的颜色-->
+        <attr name="ringColor" format="color" />
+        <!--文字的颜色-->
+        <attr name="ContentTextColor" format="color" />
+        <!--文字的内容-->
+        <attr name="showContent" format="string" />
+    </declare-styleable>
+
+</resources>

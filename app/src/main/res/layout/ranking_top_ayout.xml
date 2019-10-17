@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="169dp"
+    android:background="@drawable/bd_bg">
+
+    <LinearLayout
+        android:layout_width="290dp"
+        android:layout_height="134dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="@dimen/dp_9"
+        android:clipChildren="false"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/bd_silver_bg" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civ_imag_two"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginBottom="35dp"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp"
+                tools:src="@drawable/my_touxiang" />
+
+            <ImageView
+                android:layout_width="43dp"
+                android:layout_height="33dp"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginBottom="85dp"
+                android:src="@drawable/bd_crown_silver" />
+
+            <TextView
+                android:id="@+id/tv_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginBottom="13dp"
+                android:text=""
+                android:textColor="@color/font_black"
+                android:textSize="12sp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/bd_gold_bg" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civ_imag_one"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginBottom="43dp"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp"
+                tools:src="@drawable/my_touxiang" />
+
+            <ImageView
+                android:layout_width="43dp"
+                android:layout_height="43dp"
+                android:layout_gravity="center_horizontal|top"
+                android:src="@drawable/bd_crown_gold" />
+
+            <TextView
+                android:id="@+id/tv_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginBottom="13dp"
+                android:text=""
+                android:textColor="@color/font_black"
+                android:textSize="12sp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/bd_copper_bg" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civ_imag_three"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginBottom="28dp"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1dp"
+                tools:src="@drawable/my_touxiang" />
+
+            <ImageView
+                android:layout_width="43dp"
+                android:layout_height="33dp"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginBottom="75dp"
+                android:src="@drawable/bd_crown_copper" />
+
+            <TextView
+                android:id="@+id/tv_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginBottom="6dp"
+                android:text=""
+                android:textColor="@color/font_black"
+                android:textSize="12sp" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent">
+
+        <ImageView
+            android:layout_width="182dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bd_xiushi" />
+
+        <TextView
+            android:id="@+id/tv_title_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=""
+            android:textColor="#ffffffff"
+            android:textSize="16sp" />
+    </FrameLayout>
+</FrameLayout>

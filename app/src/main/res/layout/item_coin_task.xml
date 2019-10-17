@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/padding_margin"
+    android:paddingRight="@dimen/padding_margin"
+    android:paddingBottom="@dimen/dp_10">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/shape_square_gray_border">
+
+        <ImageView
+            android:id="@+id/iv_coin_img"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/padding_margin"
+            android:src="@drawable/qd_yubi_icon" />
+
+        <TextView
+            android:id="@+id/tv_coin_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="66dp"
+            android:text="渔币"
+            android:textColor="@color/font_black"
+            android:textSize="15sp" />
+
+        <RelativeLayout
+            android:layout_width="123dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/padding_margin">
+
+            <TextView
+                android:id="@+id/tv_coin_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="+1"
+                android:textColor="@color/font_black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_coin_state"
+                android:layout_width="60dp"
+                android:layout_height="26dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="66dp"
+                android:background="@drawable/dh_button"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="领取"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>
