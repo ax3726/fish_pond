@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
@@ -20,6 +21,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -63,6 +65,7 @@ import com.gofishfarm.htkj.utils.SharedUtils;
 import com.gofishfarm.htkj.utils.Suspended.WindowUtils;
 import com.gofishfarm.htkj.utils.notificationutils.BroadCastManager;
 import com.gofishfarm.htkj.view.main.fishingpage.UserFishingActivityView;
+import com.gofishfarm.htkj.widget.RockerView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.gyf.barlibrary.ImmersionBar;
@@ -107,60 +110,60 @@ import q.rorbin.badgeview.QBadgeView;
 import static com.umeng.socialize.utils.ContextUtil.getContext;
 
 public class UserFishingActivity extends BaseActivity<UserFishingActivityView, UserFishingActivityPresenter> implements UserFishingActivityView, View.OnTouchListener, ITXLivePlayListener {
-    private Toolbar toolbar;
-    private Button btn_close;
-    private Button btn_to_smaller;
-    private Button btn_to_help;
-    private LinearLayout ll_top_menu;
-    private TextView tv_msg_tips;
-    private TextView tv_recharge;
-    private ImageView iv_tip_close;
-    private LinearLayout ll_msg_tip;
-    private ImageView iv_error;
-    private ImageView iv_follow;
-    private TextView tv_follow;
-    private ImageView iv_onlookers;
-    private TextView tv_onlookers;
-    private ImageView iv_share;
-    private LinearLayout ll_right_menu;
-    private Button btn_one;
-    private Button btn_thr;
-    private Button btn_fou;
-    private Button btn_fiv;
-    private Button btn_two;
-    private LinearLayout ll_bottom_menu;
-    private RelativeLayout rl_fish_num;
-    private RelativeLayout rl_fish_num_layout;
+    private Toolbar          toolbar;
+    private Button           btn_close;
+    private Button           btn_to_smaller;
+    private Button           btn_to_help;
+    private LinearLayout     ll_top_menu;
+    private TextView         tv_msg_tips;
+    private TextView         tv_recharge;
+    private ImageView        iv_tip_close;
+    private LinearLayout     ll_msg_tip;
+    private ImageView        iv_error;
+    private ImageView        iv_follow;
+    private TextView         tv_follow;
+    private ImageView        iv_onlookers;
+    private TextView         tv_onlookers;
+    private ImageView        iv_share;
+    private LinearLayout     ll_right_menu;
+    private Button           btn_one;
+    private Button           btn_thr;
+    private Button           btn_fou;
+    private Button           btn_fiv;
+    private Button           btn_two;
+    private LinearLayout     ll_bottom_menu;
+    private RelativeLayout   rl_fish_num;
+    private RelativeLayout   rl_fish_num_layout;
     private TXCloudVideoView mView;
-    private TXLivePlayer mTxlpPlayer;
+    private TXLivePlayer     mTxlpPlayer;
 
     private RelativeLayout rl_get_Fish;
     private RelativeLayout rl_share_center;
-    private TextView tv_get_fish_coin;
-    private Button btn_shere;
-    private ImageView iv_share_cancel;
+    private TextView       tv_get_fish_coin;
+    private Button         btn_shere;
+    private ImageView      iv_share_cancel;
 
-    private FrameLayout fl_root_layout;
+    private FrameLayout    fl_root_layout;
     private RelativeLayout rl_root;
-    private LinearLayout ll_input_view;
-    private EditText et_input_message;
-    private TextView tv_confrim_btn;
-    private ImageView iv_chat;
-    private LinearLayout li_chat;
-    private RecyclerView recl_chat;
+    private LinearLayout   ll_input_view;
+    private EditText       et_input_message;
+    private TextView       tv_confrim_btn;
+    private ImageView      iv_chat;
+    private LinearLayout   li_chat;
+    private RecyclerView   recl_chat;
 
     private ConstraintLayout cl_user_minfo;
-    private TextView tv_rank_num;
-    private TextView tv_fisher_name;
-    private TextView tv_yutang;
-    private CircleImageView civ_fisher_imag;
+    private TextView         tv_rank_num;
+    private TextView         tv_fisher_name;
+    private TextView         tv_yutang;
+    private CircleImageView  civ_fisher_imag;
 
     private boolean isMenueCanshow = true;
-    private int on_time;
-    private int off_time;
+    private int     on_time;
+    private int     off_time;
 
-    private String ws_likes = "0";
-    private String ws_onlook = "0";
+    private String ws_likes    = "0";
+    private String ws_onlook   = "0";
     private String ws_fish_num = "0";
     //用户头像信息
     private String avatar;
@@ -168,42 +171,46 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
     private String rank;
     private String fishery_name;
 
-    private String fp_id;
-    private String dtu_id;
-    private String dtu_apikay;
-    private String order1_o = "";
-    private String order1_c = "";
-    private String order2_o = "";
-    private String order2_c = "";
-    private String order3_o = "";
-    private String order3_c = "";
-    private String order4_o = "";
-    private String order4_c = "";
-    private String order5_o = "";
-    private String order5_c = "";
-    private String on6 = "";
-    private String off6 = "";
-    private String alloff = "";
-    private String fish_integration ;//获得金币
+    private String                       fp_id;
+    private String                       dtu_id;
+    private String                       dtu_apikay;
+    private String                       order1_o = "";
+    private String                       order1_c = "";
+    private String                       order2_o = "";
+    private String                       order2_c = "";
+    private String                       order3_o = "";
+    private String                       order3_c = "";
+    private String                       order4_o = "";
+    private String                       order4_c = "";
+    private String                       order5_o = "";
+    private String                       order5_c = "";
+    private String                       on6      = "";
+    private String                       off6     = "";
+    private String                       alloff   = "";
+    private String                       fish_integration;//获得金币
     private FishDevciceBean.CommandsBean commands;
-    private List<String> lives;
-    private String Playlives;
-    private FishDevciceBean mFishDevciceBean;
-    private GsonBuilder builder;
-    private Gson gson;
+    private List<String>                 lives;
+    private String                       Playlives;
+    private FishDevciceBean              mFishDevciceBean;
+    private GsonBuilder                  builder;
+    private Gson                         gson;
 
-    private AlertDialog tipDialog;
-    private AlertDialog tipDialog1;
+    private AlertDialog                                     tipDialog;
+    private AlertDialog                                     tipDialog1;
     private com.gofishfarm.htkj.widget.iosalert.AlertDialog myDialog;//故障确认弹窗
 
     private QBadgeView badgeVie;
 
-    private ChatAdapter adapter;
+    private ChatAdapter                     adapter;
     private FixSizeLinkedList<ChatMesgBean> datas = new FixSizeLinkedList<>(100);
 
-    private String content = "";
+    private String content  = "";
     private String btn_link = "";
     private String btn_name = "";
+
+
+    private FrameLayout fly_rocker;
+    private RockerView  rv_rocker;
 
 
     @Inject
@@ -237,6 +244,8 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
         initViews();
         initplayer();
         initData();
+        initRockerControl();
+        initGestureDetector();
         myDialog = new com.gofishfarm.htkj.widget.iosalert.AlertDialog(UserFishingActivity.this).builder();
     }
 
@@ -405,7 +414,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
 
     private void initViews() {
         //让虚拟键盘一直不显示
-        Window window = getWindow();
+        Window                     window = getWindow();
         WindowManager.LayoutParams params = window.getAttributes();
 //        params.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE;
         params.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
@@ -458,6 +467,8 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
         tv_fisher_name = findViewById(R.id.tv_fisher_name);
         tv_yutang = findViewById(R.id.tv_yutang);
         civ_fisher_imag = findViewById(R.id.civ_fisher_imag);
+        fly_rocker = findViewById(R.id.fly_rocker);
+        rv_rocker = findViewById(R.id.rv_rocker);
 
         badgeVie = new QBadgeView(this);
         badgeVie.bindTarget(rl_fish_num_layout)
@@ -607,10 +618,10 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
     }
 
     private void startServices() {
-        Intent intent = new Intent(this, PlayService.class);
+        Intent       intent        = new Intent(this, PlayService.class);
         UserInfoBean mUserInfoBean = SharedUtils.getInstance().getObject(ConfigApi.USER_INFO, UserInfoBean.class);
-        String My_fishery_id = mUserInfoBean.getUser().getFisher_id();
-        String access_token = mUserInfoBean.getAccess_token();
+        String       My_fishery_id = mUserInfoBean.getUser().getFisher_id();
+        String       access_token  = mUserInfoBean.getAccess_token();
         //wsUrl = "ws://192.168.111.129:9501?fishing_id=67224273&ws_fp_id=1&access_token=L5pnaJx5M2hb6wdguU6NHjRskEK4XcG7";
 //        String urlStr = "ws://148.70.13.176:9501?fishing_id=";
         String urlStr = ConfigApi.SOCKETURL + "fishing_id=";
@@ -672,7 +683,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
 
         //输入法到底部的间距(按需求设置)
         final int paddingBottom = DisplayUtil.dp2px(this, 5);
-        final int paddings = DisplayUtil.dp2px(this, 50);
+        final int paddings      = DisplayUtil.dp2px(this, 50);
 
         fl_root_layout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -719,7 +730,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
      */
     private int getBottomBarHeight(Context context) {
         int resourceId = 0;
-        int rid = context.getResources().getIdentifier("config_showNavigationBar", "bool", "android");
+        int rid        = context.getResources().getIdentifier("config_showNavigationBar", "bool", "android");
         if (rid != 0) {
             resourceId = context.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
             return context.getResources().getDimensionPixelSize(resourceId);
@@ -734,7 +745,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
      * @return
      */
     public static int getScreenHeight(Context context) {
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager  wm         = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(outMetrics);
         return outMetrics.heightPixels;
@@ -794,6 +805,94 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
         }
     }
 
+
+    /**
+     * 初始化摇杆控制
+     */
+    private void initRockerControl() {
+        rv_rocker.setCallBackMode(RockerView.CallBackMode.CALL_BACK_MODE_STATE_CHANGE);
+        rv_rocker.setOnShakeListener(RockerView.DirectionMode.DIRECTION_8, new RockerView.OnShakeListener() {
+            @Override
+            public void onStart() {
+                checkControl();
+                fly_rocker.setBackgroundResource(R.mipmap.default_rokcer_bg);
+            }
+
+            @Override
+            public void direction(RockerView.Direction direction) {
+                getDirection(direction);
+                fly_rocker.setBackgroundResource(R.mipmap.default_rokcer_bg);
+            }
+
+            @Override
+            public void onFinish() {
+                checkControl();
+                fly_rocker.setBackgroundColor(Color.TRANSPARENT);
+            }
+        });
+    }
+
+    private void getDirection(RockerView.Direction direction) {
+        checkControl();
+
+        switch (direction) {
+            case DIRECTION_LEFT://左 上饵
+                mCurindex = 1;
+                push(order5_o, order5_o, dtu_id, dtu_apikay);
+                break;
+            case DIRECTION_RIGHT://右  收鱼
+                mCurindex = 2;
+                push(order4_o, order4_o, dtu_id, dtu_apikay);
+                break;
+            case DIRECTION_UP://上   提竿
+                mCurindex = 3;
+                push(order2_o, order2_o, dtu_id, dtu_apikay);
+                break;
+            case DIRECTION_DOWN://下  抛竿
+                mCurindex = 4;
+                push(order1_o, order1_o, dtu_id, dtu_apikay);
+                break;
+            case DIRECTION_UP_LEFT://左上
+            case DIRECTION_UP_RIGHT://右上
+            case DIRECTION_DOWN_LEFT://左下
+            case DIRECTION_DOWN_RIGHT://右下
+
+            default:
+                break;
+        }
+        Log.e("lm", "开始操作" + mCurindex);
+    }
+
+
+    //当前操控的位置  (1 上饵  2收鱼  3提竿  4抛竿  5甩杆)
+    private int mCurindex = -1;
+
+    //检查上一次是否有未关闭的操作
+    private void checkControl() {
+        Log.e("lm", "关闭操作" + mCurindex);
+        switch (mCurindex) {
+            case 1:
+                push(order5_c, order5_c, dtu_id, dtu_apikay);
+                break;
+            case 2:
+                push(order4_c, order4_c, dtu_id, dtu_apikay);
+                break;
+            case 3:
+                push(order2_c, order2_c, dtu_id, dtu_apikay);
+                break;
+            case 4:
+                push(order1_c, order1_c, dtu_id, dtu_apikay);
+                break;
+            case 5:
+                mHandler.removeCallbacks(mRunnable);
+                push(order3_c, order3_c, dtu_id, dtu_apikay);
+                break;
+
+        }
+        mCurindex = -1;
+    }
+
+
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         switch (view.getId()) {
@@ -838,6 +937,97 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
         }
         return false;
     }
+
+
+    private                GestureDetector mDetector;
+    protected static final float           FLIP_DISTANCE = 50;
+    private                Handler         mHandler      = new Handler();
+    private                Runnable        mRunnable     = new Runnable() {
+        @Override
+        public void run() {
+            push(order3_c, order3_c, dtu_id, dtu_apikay);
+            mCurindex = -1;
+        }
+    };
+
+    /**
+     * 初始化手势
+     */
+    private void initGestureDetector() {
+
+        mDetector = new GestureDetector(this, new GestureDetector.OnGestureListener() {
+
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                // TODO Auto-generated method stub
+                return false;
+            }
+
+            @Override
+            public void onShowPress(MotionEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                // TODO Auto-generated method stub
+                return false;
+            }
+
+            @Override
+            public void onLongPress(MotionEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            /**
+             *
+             * e1 The first down motion event that started the fling. e2 The
+             * move motion event that triggered the current onFling.
+             */
+            @Override
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                if (e1.getX() - e2.getX() > FLIP_DISTANCE) {
+                    Log.e("lm", "<--- left, left, go go go");
+                    return true;
+                }
+                if (e2.getX() - e1.getX() > FLIP_DISTANCE) {
+                    Log.e("lm", "right, right, go go go --->");  //忽然觉得这个log好智障...
+                    return true;
+                }
+                if (e1.getY() - e2.getY() > FLIP_DISTANCE) {
+                    Log.e("lm", "向上滑...");
+                    checkControl();
+                    mCurindex = 5;
+                    push(order3_o, order3_o, dtu_id, dtu_apikay);
+                    mHandler.postDelayed(mRunnable, 3000);
+                    return true;
+                }
+                if (e2.getY() - e1.getY() > FLIP_DISTANCE) {
+                    Log.e("lm", "向下滑...");
+                    return true;
+                }
+
+                Log.d("TAG", e2.getX() + " " + e2.getY());
+
+                return false;
+            }
+
+            @Override
+            public boolean onDown(MotionEvent e) {
+                // TODO Auto-generated method stub
+                return false;
+            }
+        });
+        mView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return mDetector.onTouchEvent(event);
+            }
+        });
+    }
+
 
     @Override
     public void onClick(View view) {
@@ -895,7 +1085,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
                     //intentWeb.putExtra(ConfigApi.WEB_TITLE, getResources().getString(R.string.user_help));
                     intentWeb.putExtra(ConfigApi.WEB_URL, btn_link);
                     startActivity(intentWeb);
-                } else if(btn_link.equals("1")){
+                } else if (btn_link.equals("1")) {
                     startActivity(new Intent(this, RechargeActivity.class));
                 }
                 break;
@@ -1021,8 +1211,8 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
 //                            .addHeader("api-key", "vAcBwxQ5D4HiISRtxDwoQXxE=xI=")
 //                            .addHeader("Content-Type", "application/x-www-form-urlencoded")
 //                            .build();
-                    OkHttpClient client = new OkHttpClient();
-                    MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse("text/x-markdown; charset=utf-8");
+                    OkHttpClient client              = new OkHttpClient();
+                    MediaType    MEDIA_TYPE_MARKDOWN = MediaType.parse("text/x-markdown; charset=utf-8");
 //                    Log.d("orders", order);
 //                    Log.d("orders", String.valueOf(System.currentTimeMillis()));
 //                    Log.d("orders", Arrays.toString(longToByte(System.currentTimeMillis())));
@@ -1071,8 +1261,8 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
 
     //long类型转成byte数组
     public static byte[] longToByte(long number) {
-        long temp = number;
-        byte[] b = new byte[8];
+        long   temp = number;
+        byte[] b    = new byte[8];
         for (int i = 0; i < b.length; i++) {
             b[i] = new Long(temp & 0xff).byteValue();
             //将最低位保存在最低位
@@ -1089,7 +1279,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
      */
     public static byte[] hexStringToByte(String hex) {
         byte[] b = new byte[hex.length() / 2];
-        int j = 0;
+        int    j = 0;
         for (int i = 0; i < b.length; i++) {
             char c0 = hex.charAt(j++);
             char c1 = hex.charAt(j++);
@@ -1170,7 +1360,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
 
     @Override
     public void onPlayEvent(int event, Bundle bundle) {
-        Log.e("bundle",bundle.toString());
+        Log.e("bundle", bundle.toString());
         if (event == TXLiveConstants.PLAY_ERR_NET_DISCONNECT) {
             ToastUtils.show("网络断开，拉流失败");
             dismissDialog();

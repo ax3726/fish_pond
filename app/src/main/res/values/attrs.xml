@@ -54,7 +54,7 @@
         <!-- Selected Paint Color (color). -->
         <attr name="paintSelectColor" format="reference|color" />
         <!--是否填充-->
-        <attr name="isFillColor" format="boolean"/>
+        <attr name="isFillColor" format="boolean" />
     </declare-styleable>
 
     <!--圆弧进度条-->
@@ -73,6 +73,14 @@
         <attr name="ContentTextColor" format="color" />
         <!--文字的内容-->
         <attr name="showContent" format="string" />
+    </declare-styleable>
+
+
+    <!--摇杆控件-->
+    <declare-styleable name="RockerView">
+        <attr name="areaBackground" format="color|reference" />
+        <attr name="rockerBackground" format="color|reference" />
+        <attr name="rockerRadius" format="dimension" />
     </declare-styleable>
 
 </resources>

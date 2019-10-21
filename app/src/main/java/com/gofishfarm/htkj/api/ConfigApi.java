@@ -9,11 +9,11 @@ package com.gofishfarm.htkj.api;
 public interface ConfigApi {
 
     //域名
-    String INFO = "http://148.70.13.176/";//测试
-//        String INFO = "http://www.gofishfarm.com/";
+//    String INFO = "http://148.70.13.176/";//测试
+        String INFO = "http://www.gofishfarm.com/";
 
-    String SOCKETURL = "ws://148.70.13.176:9501?";//url标识测试
-//            String SOCKETURL = "ws://212.64.81.173:9501?";//url标识
+//    String SOCKETURL = "ws://148.70.13.176:9501?";//url标识测试
+            String SOCKETURL = "ws://212.64.81.173:9501?";//url标识
 
     String HEARTBEAT_SRT = "heartbeat";//心跳的内容
 
