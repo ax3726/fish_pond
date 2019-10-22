@@ -940,7 +940,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
 
 
     private                GestureDetector mDetector;
-    protected static final float           FLIP_DISTANCE = 50;
+    protected static final float           FLIP_DISTANCE = 80;
     private                Handler         mHandler      = new Handler();
     private                Runnable        mRunnable     = new Runnable() {
         @Override
@@ -992,10 +992,6 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
                     Log.e("lm", "<--- left, left, go go go");
                     return true;
                 }
-                if (e2.getX() - e1.getX() > FLIP_DISTANCE) {
-                    Log.e("lm", "right, right, go go go --->");  //忽然觉得这个log好智障...
-                    return true;
-                }
                 if (e1.getY() - e2.getY() > FLIP_DISTANCE) {
                     Log.e("lm", "向上滑...");
                     checkControl();
@@ -1004,6 +1000,12 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
                     mHandler.postDelayed(mRunnable, 3000);
                     return true;
                 }
+
+                if (e2.getX() - e1.getX() > FLIP_DISTANCE) {
+                    Log.e("lm", "right, right, go go go --->");  //忽然觉得这个log好智障...
+                    return true;
+                }
+
                 if (e2.getY() - e1.getY() > FLIP_DISTANCE) {
                     Log.e("lm", "向下滑...");
                     return true;
