@@ -61,6 +61,7 @@ import com.gofishfarm.htkj.utils.AppUtils;
 import com.gofishfarm.htkj.utils.BASE64Encoder;
 import com.gofishfarm.htkj.utils.NavationStatusBarUtils;
 import com.gofishfarm.htkj.utils.NetworkUtils;
+import com.gofishfarm.htkj.utils.SharedPreferencesUtils;
 import com.gofishfarm.htkj.utils.SharedUtils;
 import com.gofishfarm.htkj.utils.Suspended.WindowUtils;
 import com.gofishfarm.htkj.utils.notificationutils.BroadCastManager;
@@ -213,6 +214,9 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
     private RockerView  rv_rocker;
 
 
+    private int mType = 0; //0 摇杆  1按键
+
+
     @Inject
     UserFishingActivityPresenter mUserFishingActivityPresenter;
 
@@ -240,8 +244,10 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
     protected void initView(Bundle savedInstanceState) {
         setcaCloaseKeyBord(false);
         EventBus.getDefault().register(this);
+        mType = (int) SharedPreferencesUtils.getParam(this, "type", 0);
         initGson();
         initViews();
+        setControlTypeView();
         initplayer();
         initData();
         initRockerControl();
@@ -651,6 +657,10 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
 
     @Override
     public void onDestroy() {
+        /**
+         * 保存控制模式
+         */
+        SharedPreferencesUtils.setParam(this, "type", mType);
         EventBus.getDefault().unregister(this);
         closeClearDialog();
         mTxlpPlayer.stopPlay(true); // true 代表清除最后一帧画面
@@ -941,6 +951,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
 
     private                GestureDetector mDetector;
     protected static final float           FLIP_DISTANCE = 80;
+    private                int             mButtomHeight = 0;
     private                Handler         mHandler      = new Handler();
     private                Runnable        mRunnable     = new Runnable() {
         @Override
@@ -950,10 +961,17 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
         }
     };
 
+    public int dp2px(int dp) {
+        return (int) (dp * getResources().getDisplayMetrics().density);
+    }
+
     /**
      * 初始化手势
      */
     private void initGestureDetector() {
+        int height = getWindow().getWindowManager().getDefaultDisplay().getHeight();
+        mButtomHeight = height - dp2px(150);
+
 
         mDetector = new GestureDetector(this, new GestureDetector.OnGestureListener() {
 
@@ -981,27 +999,41 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
 
             }
 
+
             /**
              *
              * e1 The first down motion event that started the fling. e2 The
              * move motion event that triggered the current onFling.
              */
+
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                Log.e("lm", "xx" + e2.getX() + "  yy" + e2.getY());
+
                 if (e1.getX() - e2.getX() > FLIP_DISTANCE) {
+                    if (e2.getY() > mButtomHeight) {
+                        mType = mType == 0 ? 1 : 0;
+                        setControlTypeView();
+                    }
                     Log.e("lm", "<--- left, left, go go go");
                     return true;
                 }
                 if (e1.getY() - e2.getY() > FLIP_DISTANCE) {
                     Log.e("lm", "向上滑...");
-                    checkControl();
-                    mCurindex = 5;
-                    push(order3_o, order3_o, dtu_id, dtu_apikay);
-                    mHandler.postDelayed(mRunnable, 3000);
+                    if (mType == 0) {
+                        checkControl();
+                        mCurindex = 5;
+                        push(order3_o, order3_o, dtu_id, dtu_apikay);
+                        mHandler.postDelayed(mRunnable, 3000);
+                    }
                     return true;
                 }
-
                 if (e2.getX() - e1.getX() > FLIP_DISTANCE) {
+                    if (e2.getY() > mButtomHeight) {
+                        mType = mType == 0 ? 1 : 0;
+                        setControlTypeView();
+                    }
+
                     Log.e("lm", "right, right, go go go --->");  //忽然觉得这个log好智障...
                     return true;
                 }
@@ -1011,7 +1043,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
                     return true;
                 }
 
-                Log.d("TAG", e2.getX() + " " + e2.getY());
+                Log.d("lm", "xx" + e2.getX() + "  yy" + e2.getY());
 
                 return false;
             }
@@ -1028,8 +1060,21 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
                 return mDetector.onTouchEvent(event);
             }
         });
+
+
     }
 
+
+    private void setControlTypeView() {
+        if (mType == 0) {
+            fly_rocker.setVisibility(View.VISIBLE);
+            ll_bottom_menu.setVisibility(View.GONE);
+        } else {
+            fly_rocker.setVisibility(View.GONE);
+            ll_bottom_menu.setVisibility(View.VISIBLE);
+        }
+
+    }
 
     @Override
     public void onClick(View view) {
@@ -1427,5 +1472,6 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
             imm.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
         }
     }
+
 
 }
