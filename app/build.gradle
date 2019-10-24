@@ -29,34 +29,30 @@ android {
         abortOnError false
     }
 
-   /* signingConfigs {//->a 设置签名信息，
-        debug {
-            storeFile file('debug.keystore')
-            storePassword "android"
-            keyAlias "androiddebugkey"
-            keyPassword "android"
-        }
+  signingConfigs {//->a 设置签名信息，
         release {
           //  storeFile file('H:\\STUDIO-PROJECT\\fishpond_project\\jks文件参考链接\\gofishfarm.jks')
-//            storeFile file('/Users/xiaotao/Documents/Android/fishpond_project/jks文件参考链接/gofishfarm.jks')
+            storeFile file('gofishfarm.jks')
             storePassword("gofishfarm1230")
             keyPassword "gofishfarm1230"
             keyAlias "key0"
 //            v2SigningEnabled false
         }
-    }*/
+    }
     buildTypes {
         debug {
             minifyEnabled false
-//            minifyEnabled true
-//            useProguard true
+            useProguard true
             //在debug模式下引用该签名文件
            // signingConfig signingConfigs.release
         }
         release {
             minifyEnabled false
-//            useProguard true
-            //signingConfig signingConfigs.release
+            useProguard true
+            //Zipalign优化
+            zipAlignEnabled false
+            // 移除无用的resource文件
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
             applicationVariants.all { variant ->

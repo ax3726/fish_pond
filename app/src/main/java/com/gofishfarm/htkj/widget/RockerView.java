@@ -14,12 +14,15 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 
 import com.gofishfarm.htkj.R;
 import com.orhanobut.logger.Logger;
+
+import q.rorbin.badgeview.DisplayUtil;
 
 /**
  * Created by lm on 2019/10/19.
@@ -92,7 +95,7 @@ public class RockerView extends View {
     private              int    mRockerBackgroundMode          = ROCKER_BACKGROUND_MODE_DEFAULT;
     private              Bitmap mRockerBitmap;
     private              int    mRockerColor;
-
+    private              Rect   mRockerRect;
 
     public RockerView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -206,7 +209,6 @@ public class RockerView extends View {
             // 没有设置摇杆背景
             mRockerBackgroundMode = ROCKER_BACKGROUND_MODE_DEFAULT;
         }
-
         // 摇杆半径
         mRockerRadius = typedArray.getDimensionPixelOffset(R.styleable.RockerView_rockerRadius, DEFAULT_ROCKER_RADIUS);
 
@@ -282,8 +284,8 @@ public class RockerView extends View {
         if (ROCKER_BACKGROUND_MODE_PIC == mRockerBackgroundMode || ROCKER_BACKGROUND_MODE_XML == mRockerBackgroundMode) {
             // 图片
             Rect src = new Rect(0, 0, mRockerBitmap.getWidth(), mRockerBitmap.getHeight());
-            Rect dst = new Rect(mRockerPosition.x - mRockerRadius, mRockerPosition.y - mRockerRadius, mRockerPosition.x + mRockerRadius, mRockerPosition.y + mRockerRadius);
-            canvas.drawBitmap(mRockerBitmap, src, dst, mRockerPaint);
+            mRockerRect = new Rect(mRockerPosition.x - mRockerRadius, mRockerPosition.y - mRockerRadius, mRockerPosition.x + mRockerRadius, mRockerPosition.y + mRockerRadius);
+            canvas.drawBitmap(mRockerBitmap, src, mRockerRect, mRockerPaint);
         } else if (ROCKER_BACKGROUND_MODE_COLOR == mRockerBackgroundMode) {
             // 色值
             mRockerPaint.setColor(mRockerColor);
@@ -295,15 +297,36 @@ public class RockerView extends View {
         }
     }
 
+
+    private boolean start = false;
+    private boolean isOverRound(int x,int y)
+    {
+        int min=mRockerPosition.x-mRockerRadius;
+        int max=mRockerPosition.x+mRockerRadius;
+        if (x>min&&y>min&&x<max&&y<max) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:// 按下
-                postDelayed(mLongPressRunnable, ViewConfiguration.getLongPressTimeout());
+//                Log.e("lmm", "按下 x" + event.getX() + "   y" + event.getY());
+                if (mRockerRect != null && isOverRound((int) event.getX(), (int) event.getY())) {
+                    Log.e("lmm", "在按钮范围内");
+                    postDelayed(mLongPressRunnable, ViewConfiguration.getLongPressTimeout());
+                }
                 break;
             case MotionEvent.ACTION_MOVE:// 移动
+                if (!start) {
+                    break;
+                }
+
                 float moveX = event.getX();
                 float moveY = event.getY();
+//                Log.e("lmm", "在按钮范围内--开始移动 x"+moveX+"   y"+moveY);
                 mRockerPosition = getRockerPositionPoint(mCenterPoint, new Point((int) moveX, (int) moveY), mAreaRadius, mRockerRadius);
                 moveRocker(mRockerPosition.x, mRockerPosition.y);
                 break;
@@ -407,6 +430,8 @@ public class RockerView extends View {
      * 开始
      */
     private void callBackStart() {
+        start = true;
+        Log.e("lmm","开始 "+start);
         tempDirection = Direction.DIRECTION_CENTER;
         if (null != mOnAngleChangeListener) {
             mOnAngleChangeListener.onStart();
@@ -616,7 +641,8 @@ public class RockerView extends View {
      * 结束
      */
     private void callBackFinish() {
-
+        start = false;
+        Log.e("lmm","结束 "+start);
         tempDirection = Direction.DIRECTION_CENTER;
         if (null != mOnAngleChangeListener) {
             mOnAngleChangeListener.onFinish();
@@ -732,10 +758,9 @@ public class RockerView extends View {
 
         @Override
         public void run() {
-           callBackStart();
+            callBackStart();
         }
     };
-
 
 
 }
