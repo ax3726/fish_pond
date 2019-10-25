@@ -42,6 +42,7 @@ public class RockerView extends View {
 
     private int mAreaRadius;
     private int mRockerRadius;
+    private int mMoveRadius;
 
     private CallBackMode          mCallBackMode = CallBackMode.CALL_BACK_MODE_MOVE;
     private OnAngleChangeListener mOnAngleChangeListener;
@@ -95,7 +96,6 @@ public class RockerView extends View {
     private              int    mRockerBackgroundMode          = ROCKER_BACKGROUND_MODE_DEFAULT;
     private              Bitmap mRockerBitmap;
     private              int    mRockerColor;
-    private              Rect   mRockerRect;
 
     public RockerView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -258,7 +258,7 @@ public class RockerView extends View {
         mCenterPoint.set(cx, cy);
         // 可移动区域的半径
         mAreaRadius = (measuredWidth <= measuredHeight) ? cx : cy;
-
+        mMoveRadius=mAreaRadius/3;
         // 摇杆位置
         if (0 == mRockerPosition.x || 0 == mRockerPosition.y) {
             mRockerPosition.set(mCenterPoint.x, mCenterPoint.y);
@@ -269,6 +269,7 @@ public class RockerView extends View {
             // 图片
             Rect src = new Rect(0, 0, mAreaBitmap.getWidth(), mAreaBitmap.getHeight());
             Rect dst = new Rect(mCenterPoint.x - mAreaRadius, mCenterPoint.y - mAreaRadius, mCenterPoint.x + mAreaRadius, mCenterPoint.y + mAreaRadius);
+
             canvas.drawBitmap(mAreaBitmap, src, dst, mAreaBackgroundPaint);
         } else if (AREA_BACKGROUND_MODE_COLOR == mAreaBackgroundMode) {
             // 色值
@@ -284,8 +285,8 @@ public class RockerView extends View {
         if (ROCKER_BACKGROUND_MODE_PIC == mRockerBackgroundMode || ROCKER_BACKGROUND_MODE_XML == mRockerBackgroundMode) {
             // 图片
             Rect src = new Rect(0, 0, mRockerBitmap.getWidth(), mRockerBitmap.getHeight());
-            mRockerRect = new Rect(mRockerPosition.x - mRockerRadius, mRockerPosition.y - mRockerRadius, mRockerPosition.x + mRockerRadius, mRockerPosition.y + mRockerRadius);
-            canvas.drawBitmap(mRockerBitmap, src, mRockerRect, mRockerPaint);
+            Rect rect = new Rect(mRockerPosition.x - mRockerRadius, mRockerPosition.y - mRockerRadius, mRockerPosition.x + mRockerRadius, mRockerPosition.y + mRockerRadius);
+            canvas.drawBitmap(mRockerBitmap, src, rect, mRockerPaint);
         } else if (ROCKER_BACKGROUND_MODE_COLOR == mRockerBackgroundMode) {
             // 色值
             mRockerPaint.setColor(mRockerColor);
@@ -301,8 +302,8 @@ public class RockerView extends View {
     private boolean start = false;
     private boolean isOverRound(int x,int y)
     {
-        int min=mRockerPosition.x-mRockerRadius;
-        int max=mRockerPosition.x+mRockerRadius;
+        int min=mRockerPosition.x-mMoveRadius;
+        int max=mRockerPosition.x+mMoveRadius;
         if (x>min&&y>min&&x<max&&y<max) {
             return true;
         }
@@ -314,7 +315,7 @@ public class RockerView extends View {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:// 按下
 //                Log.e("lmm", "按下 x" + event.getX() + "   y" + event.getY());
-                if (mRockerRect != null && isOverRound((int) event.getX(), (int) event.getY())) {
+                if ( isOverRound((int) event.getX(), (int) event.getY())) {
                     Log.e("lmm", "在按钮范围内");
                     postDelayed(mLongPressRunnable, ViewConfiguration.getLongPressTimeout());
                 }
@@ -368,8 +369,14 @@ public class RockerView extends View {
         // 计算角度
         double angle = radian2Angle(radian);
 
-        // 回调 返回参数
-        callBack(angle);
+        /**
+         * 不这个范围回调
+         */
+        if (!isOverRound(touchPoint.x,touchPoint.y)) {
+            // 回调 返回参数
+            callBack(angle);
+        }
+
 
         Logger.i(TAG, "getRockerPositionPoint: 角度 :" + angle);
         if (lenXY + rockerRadius <= regionRadius) { // 触摸位置在可活动范围内
