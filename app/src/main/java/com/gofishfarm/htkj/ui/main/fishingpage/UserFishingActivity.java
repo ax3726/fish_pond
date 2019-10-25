@@ -950,7 +950,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
 
 
     private                GestureDetector mDetector;
-    protected static final float           FLIP_DISTANCE = 80;
+    protected static final float           FLIP_DISTANCE = 50;
     private                int             mButtomHeight = 0;
     private                Handler         mHandler      = new Handler();
     private                Runnable        mRunnable     = new Runnable() {
