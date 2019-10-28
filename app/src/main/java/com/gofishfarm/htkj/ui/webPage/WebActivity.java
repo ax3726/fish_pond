@@ -24,16 +24,16 @@ import javax.inject.Inject;
 public class WebActivity extends BaseActivity<WebActivityView, WebActivityPresenter> implements WebActivityView {
 
     private ImageButton toolbar_left_ib;
-    private TextView toolbar_title;
-    private ImageView toolbar_right_iv;
-    private ImageView toolbar_right_my_iv;
-    private TextView toolbar_right_bt;
-    private View toolbar_v;
-    private WebView webView;
-    private AgentWeb mAgentWeb;
+    private TextView    toolbar_title;
+    private ImageView   toolbar_right_iv;
+    private ImageView   toolbar_right_my_iv;
+    private TextView    toolbar_right_bt;
+    private View        toolbar_v;
+    private WebView     webView;
+    private AgentWeb    mAgentWeb;
     private FrameLayout fl_web;
-    private String webTitle = "";
-    private String webUrl = "";
+    private String      webTitle = "";
+    private String      webUrl   = "";
 
     @Inject
     WebActivityPresenter mWebActivityPresenter;
@@ -108,7 +108,9 @@ public class WebActivity extends BaseActivity<WebActivityView, WebActivityPresen
         switch (view.getId()) {
 
             case R.id.toolbar_left_ib:
-                if (!mAgentWeb.back()) {
+                if (webTitle.equals(getResources().getString(R.string.mall))) {
+                    finish();
+                } else if (!mAgentWeb.back()) {
                     finish();
                 }
                 break;
