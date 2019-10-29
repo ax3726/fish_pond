@@ -372,9 +372,14 @@ public class RockerView extends View {
         /**
          * 不这个范围回调
          */
-        if (!isOverRound(touchPoint.x,touchPoint.y)) {
+        if (!isOverRound(touchPoint.x, touchPoint.y)) {
             // 回调 返回参数
             callBack(angle);
+        } else {
+            if (null != mOnShakeListener) {
+                tempDirection = Direction.DIRECTION_CENTER;
+                mOnShakeListener.direction(Direction.DIRECTION_CENTER);
+            }
         }
 
 

@@ -66,6 +66,7 @@ import com.gofishfarm.htkj.utils.SharedUtils;
 import com.gofishfarm.htkj.utils.Suspended.WindowUtils;
 import com.gofishfarm.htkj.utils.notificationutils.BroadCastManager;
 import com.gofishfarm.htkj.view.main.fishingpage.UserFishingActivityView;
+import com.gofishfarm.htkj.widget.GestureMoveView;
 import com.gofishfarm.htkj.widget.RockerView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -210,8 +211,9 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
     private String btn_name = "";
 
 
-    private FrameLayout fly_rocker;
-    private RockerView  rv_rocker;
+    private FrameLayout     fly_rocker;
+    private RockerView      rv_rocker;
+    private GestureMoveView gmv_body;
 
 
     private int mType = 0; //0 摇杆  1按键
@@ -475,6 +477,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
         civ_fisher_imag = findViewById(R.id.civ_fisher_imag);
         fly_rocker = findViewById(R.id.fly_rocker);
         rv_rocker = findViewById(R.id.rv_rocker);
+        gmv_body = findViewById(R.id.gmv_body);
 
         badgeVie = new QBadgeView(this);
         badgeVie.bindTarget(rl_fish_num_layout)
@@ -825,13 +828,13 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
             @Override
             public void onStart() {
                 checkControl();
-                fly_rocker.setBackgroundResource(R.mipmap.default_rokcer_bg);
+                fly_rocker.setBackgroundResource(R.drawable.rocker_center_icon);
             }
 
             @Override
             public void direction(RockerView.Direction direction) {
+                getDirectionByBg(direction);
                 getDirection(direction);
-                fly_rocker.setBackgroundResource(R.mipmap.default_rokcer_bg);
             }
 
             @Override
@@ -840,6 +843,31 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
                 fly_rocker.setBackgroundColor(Color.TRANSPARENT);
             }
         });
+    }
+
+    private void getDirectionByBg(RockerView.Direction direction) {
+        switch (direction) {
+            case DIRECTION_LEFT://左 上饵
+                fly_rocker.setBackgroundResource(R.drawable.rocker_left_icon);
+                break;
+            case DIRECTION_RIGHT://右  收鱼
+                fly_rocker.setBackgroundResource(R.drawable.rocker_right_icon);
+                break;
+            case DIRECTION_UP://上   提竿
+                fly_rocker.setBackgroundResource(R.drawable.rocker_top_icon);
+                break;
+            case DIRECTION_DOWN://下  抛竿
+                fly_rocker.setBackgroundResource(R.drawable.rocker_buttom_icon);
+                break;
+            case DIRECTION_UP_LEFT://左上
+            case DIRECTION_UP_RIGHT://右上
+            case DIRECTION_DOWN_LEFT://左下
+            case DIRECTION_DOWN_RIGHT://右下
+            case DIRECTION_CENTER://中间
+                fly_rocker.setBackgroundResource(R.drawable.rocker_center_icon);
+            default:
+                break;
+        }
     }
 
     private void getDirection(RockerView.Direction direction) {
@@ -866,6 +894,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
             case DIRECTION_UP_RIGHT://右上
             case DIRECTION_DOWN_LEFT://左下
             case DIRECTION_DOWN_RIGHT://右下
+            case DIRECTION_CENTER://中间
 
             default:
                 break;
@@ -1021,6 +1050,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
                 if (e1.getY() - e2.getY() > FLIP_DISTANCE) {
                     Log.e("lm", "向上滑...");
                     if (mType == 0) {
+                        showMove(e1,e2);
                         checkControl();
                         mCurindex = 5;
                         push(order3_o, order3_o, dtu_id, dtu_apikay);
@@ -1062,6 +1092,20 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
         });
 
 
+    }
+
+
+    private Runnable mMoveRunnable = new Runnable() {
+        @Override
+        public void run() {
+            gmv_body.releaseMove();
+        }
+    };
+
+    private void showMove(MotionEvent e1, MotionEvent e2) {
+        gmv_body.setMoveEvent(e1, e2);
+        mHandler.removeCallbacks(mMoveRunnable);
+        mHandler.postDelayed(mMoveRunnable, 3000);
     }
 
 
