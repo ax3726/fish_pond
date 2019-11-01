@@ -211,10 +211,11 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
     private String btn_name = "";
 
 
-    private FrameLayout     fly_rocker;
-    private RockerView      rv_rocker;
-    private GestureMoveView gmv_body;
-
+    private FrameLayout      fly_rocker;
+    private RockerView       rv_rocker;
+    private GestureMoveView  gmv_body;
+    private ConstraintLayout ll_guide;
+    private TextView         tv_guide_close;
 
     private int mType = 0; //0 摇杆  1按键
 
@@ -247,6 +248,9 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
         setcaCloaseKeyBord(false);
         EventBus.getDefault().register(this);
         mType = (int) SharedPreferencesUtils.getParam(this, "type", 0);
+
+
+
         initGson();
         initViews();
         setControlTypeView();
@@ -478,6 +482,8 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
         fly_rocker = findViewById(R.id.fly_rocker);
         rv_rocker = findViewById(R.id.rv_rocker);
         gmv_body = findViewById(R.id.gmv_body);
+        ll_guide = findViewById(R.id.ll_guide);
+        tv_guide_close = findViewById(R.id.tv_guide_close);
 
         badgeVie = new QBadgeView(this);
         badgeVie.bindTarget(rl_fish_num_layout)
@@ -693,6 +699,8 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
         btn_fou.setOnTouchListener(this);
         btn_fiv.setOnTouchListener(this);
         btn_two.setOnTouchListener(this);
+
+        tv_guide_close.setOnClickListener(this);
 
         //输入法到底部的间距(按需求设置)
         final int paddingBottom = DisplayUtil.dp2px(this, 5);
@@ -1050,7 +1058,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
                 if (e1.getY() - e2.getY() > FLIP_DISTANCE) {
                     Log.e("lm", "向上滑...");
                     if (mType == 0) {
-                        showMove(e1,e2);
+                        showMove(e1, e2);
                         checkControl();
                         mCurindex = 5;
                         push(order3_o, order3_o, dtu_id, dtu_apikay);
@@ -1134,10 +1142,21 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
                 break;
             case R.id.btn_to_help:
                 HideKeyboard(fl_root_layout);
-                Intent intent = new Intent(this, WebActivity.class);
+               /* Intent intent = new Intent(this, WebActivity.class);
                 intent.putExtra(ConfigApi.WEB_TITLE, getResources().getString(R.string.user_help));
                 intent.putExtra(ConfigApi.WEB_URL, ConfigApi.XSZN_URL);
-                startActivity(intent);
+                startActivity(intent);*/
+                if (btn_to_help.isSelected()) {
+                    ll_guide.setVisibility(View.GONE);
+
+                } else {
+                    ll_guide.setVisibility(View.VISIBLE);
+                }
+                btn_to_help.setSelected(!btn_to_help.isSelected());
+                break;
+            case R.id.tv_guide_close:
+                ll_guide.setVisibility(View.GONE);
+                btn_to_help.setSelected(false);
                 break;
             case R.id.iv_error:
                 HideKeyboard(fl_root_layout);

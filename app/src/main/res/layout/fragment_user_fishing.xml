@@ -307,14 +307,30 @@
 
         <!--左侧按钮-->
         <LinearLayout
+            android:id="@+id/lly_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="@dimen/dp_15"
-            android:layout_marginBottom="120dp"
+            android:layout_marginBottom="140dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
+
+            <Button
+                android:id="@+id/btn_to_help"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:background="@drawable/zhinan" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginBottom="5dp"
+                android:text="指南"
+                android:textColor="#ffffffff"
+                android:textSize="11sp" />
             <ImageView
                 android:id="@+id/iv_error"
                 android:layout_width="37dp"
@@ -331,21 +347,52 @@
                 android:textColor="#ffffffff"
                 android:textSize="11sp" />
 
-            <Button
-                android:id="@+id/btn_to_help"
-                android:layout_width="37dp"
-                android:layout_height="37dp"
-                android:background="@drawable/zhinan" />
+
+        </LinearLayout>
+        <!--指南提示框-->
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/ll_guide"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-8dp"
+            android:layout_marginLeft="5dp"
+            android:layout_alignTop="@+id/lly_left"
+            android:layout_toRightOf="@+id/lly_left"
+            android:background="@drawable/box"
+           >
 
             <TextView
+                android:id="@+id/tv_guide_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|top"
+                android:text="按钮上拖，鱼竿抬起；\n按钮下拖，鱼竿下抛；\n按钮左拖，鱼叉下，饵盒上；\n按钮右拖，鱼叉上，饵盒下；\n手指在屏幕上快速上滑，快速提竿。"
+                android:textColor="#ffffffff"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_guide_close"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_5"
-                android:layout_marginBottom="5dp"
-                android:text="指南"
-                android:textColor="#ffffffff"
-                android:textSize="11sp" />
-        </LinearLayout>
+                android:drawableLeft="@drawable/left_arrow"
+                android:drawablePadding="@dimen/dp_5"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_5"
+                android:text="已知晓"
+                android:textColor="#ff854c"
+                android:textSize="@dimen/dp_10"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_guide_content" />
+
+        </android.support.constraint.ConstraintLayout>
+
+
 
         <!--底部的按钮布局，会影响输入法的位置-->
         <LinearLayout
