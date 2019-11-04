@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -217,8 +218,9 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
     private ConstraintLayout ll_guide;
     private TextView         tv_guide_close;
 
-    private int mType = 0; //0 摇杆  1按键
-
+    private int     mType      = 0; //0 摇杆  1按键
+    //是否展示新手指南
+    private boolean mShouGuide = false;
 
     @Inject
     UserFishingActivityPresenter mUserFishingActivityPresenter;
@@ -248,7 +250,6 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
         setcaCloaseKeyBord(false);
         EventBus.getDefault().register(this);
         mType = (int) SharedPreferencesUtils.getParam(this, "type", 0);
-
 
 
         initGson();
@@ -484,6 +485,12 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
         gmv_body = findViewById(R.id.gmv_body);
         ll_guide = findViewById(R.id.ll_guide);
         tv_guide_close = findViewById(R.id.tv_guide_close);
+
+        mShouGuide = getIntent().getBooleanExtra("shou_guide", false);
+        if (mShouGuide) {
+            ll_guide.setVisibility(View.VISIBLE);
+            ll_guide.setSelected(true);
+        }
 
         badgeVie = new QBadgeView(this);
         badgeVie.bindTarget(rl_fish_num_layout)
@@ -1098,8 +1105,14 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
                 return mDetector.onTouchEvent(event);
             }
         });
+    }
 
+    private MediaPlayer mMediaPlayer;
 
+    //播放甩杆语音
+    public void playVoice() {
+        mMediaPlayer = MediaPlayer.create(this, R.raw.mast_voice);
+        mMediaPlayer.start();
     }
 
 
@@ -1114,6 +1127,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
         gmv_body.setMoveEvent(e1, e2);
         mHandler.removeCallbacks(mMoveRunnable);
         mHandler.postDelayed(mMoveRunnable, 3000);
+        playVoice();
     }
 
 

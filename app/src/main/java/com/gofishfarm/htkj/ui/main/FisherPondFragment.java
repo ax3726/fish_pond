@@ -288,7 +288,11 @@ public class FisherPondFragment extends BaseFragment<FisherPondView, FisherPondP
             if (null == fishDevciceBean.getCommands()) {
                 startActivity(new Intent(getActivity(), FishGuideActivity.class));
             } else {
-                goGuide();
+                Intent intent = new Intent(getContext(), UserFishingActivity.class);
+                intent.putExtra(ConfigApi.FISHDEVCICEBEAN, fishDevciceBean);
+                intent.putExtra("shou_guide", true);
+                startActivity(intent);
+                //goGuide();
             }
         } else if (fishDevciceBean.getInfo().equals("3")) {
             //跳转围观
