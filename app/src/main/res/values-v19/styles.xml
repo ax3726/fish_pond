@@ -6,6 +6,7 @@
         <item name="windowActionBar">false</item>
         <!--&lt;!&ndash;一定要，否则有状态栏显示，不能全屏&ndash;&gt;-->
         <item name="windowNoTitle">true</item>
+
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:background">@drawable/splash_bg</item>
         <item name="android:windowBackground">@color/white</item>

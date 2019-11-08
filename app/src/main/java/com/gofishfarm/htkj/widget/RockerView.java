@@ -317,7 +317,7 @@ public class RockerView extends View {
 //                Log.e("lmm", "按下 x" + event.getX() + "   y" + event.getY());
                 if ( isOverRound((int) event.getX(), (int) event.getY())) {
                     Log.e("lmm", "在按钮范围内");
-                    postDelayed(mLongPressRunnable, ViewConfiguration.getLongPressTimeout());
+                    postDelayed(mLongPressRunnable, 300);
                 }
                 break;
             case MotionEvent.ACTION_MOVE:// 移动

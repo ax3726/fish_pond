@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 def versionMajor = 1
-def versionMinor = 1
-def versionPatch = 2
+def versionMinor = 2
+def versionPatch = 0
 
 android {
     compileSdkVersion 28
@@ -28,6 +28,7 @@ android {
         // but continue the build even when errors are found:
         abortOnError false
     }
+
 
   signingConfigs {//->a 设置签名信息，
         release {
@@ -69,9 +70,29 @@ android {
 
     // 配置所有的渠道名，如需增加其他渠道，则以类似的形式在productFlavors里面添加对应的即可
     productFlavors {
-        android {
+        android1 {
+            resValue "string", "app_name", "沙发渔霸"
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "android"]
         }
+        android2 {
+            resValue "string", "app_name", " 沙发渔霸钓鱼"
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "android"]
+        }
+        android3 {
+            resValue "string", "app_name", " 钓鱼-在线钓活鱼"
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "android"]
+        }
+        android4 {
+            resValue "string", "app_name", "远程钓鱼-钓鱼人必备"
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "android"]
+        }
+        android5 {
+            resValue "string", "app_name", "沙发渔霸-钓鱼人必备"
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "android"]
+        }
+
+
+
 //        android {
 //            //不同渠道配置不同的包名
 //            //applicationId "com.lyl.dev"

@@ -368,7 +368,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left|top"
-                android:text="按钮上拖，鱼竿抬起；\n按钮下拖，鱼竿下抛；\n按钮左拖，鱼叉下，饵盒上；\n按钮右拖，鱼叉上，饵盒下；\n手指在屏幕上快速上滑，快速提竿。"
+                android:text="按钮上拖，鱼竿下抛；\n按钮下拖，鱼竿抬起；\n按钮左拖，鱼叉下，饵盒上；\n按钮右拖，鱼叉上，饵盒下；\n手指在屏幕上快速上滑，快速提竿。"
                 android:textColor="#ffffffff"
                 android:textSize="14sp"
                 app:layout_constraintLeft_toLeftOf="parent"

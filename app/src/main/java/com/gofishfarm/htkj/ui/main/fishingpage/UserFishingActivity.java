@@ -868,10 +868,10 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
             case DIRECTION_RIGHT://右  收鱼
                 fly_rocker.setBackgroundResource(R.drawable.rocker_right_icon);
                 break;
-            case DIRECTION_UP://上   提竿
+            case DIRECTION_UP://上  抛竿
                 fly_rocker.setBackgroundResource(R.drawable.rocker_top_icon);
                 break;
-            case DIRECTION_DOWN://下  抛竿
+            case DIRECTION_DOWN://下   提竿
                 fly_rocker.setBackgroundResource(R.drawable.rocker_buttom_icon);
                 break;
             case DIRECTION_UP_LEFT://左上
@@ -897,13 +897,14 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
                 mCurindex = 2;
                 push(order4_o, order4_o, dtu_id, dtu_apikay);
                 break;
-            case DIRECTION_UP://上   提竿
+            case DIRECTION_UP://上   抛竿
                 mCurindex = 3;
-                push(order2_o, order2_o, dtu_id, dtu_apikay);
-                break;
-            case DIRECTION_DOWN://下  抛竿
-                mCurindex = 4;
                 push(order1_o, order1_o, dtu_id, dtu_apikay);
+                break;
+            case DIRECTION_DOWN://下  提竿
+                mCurindex = 4;
+                push(order2_o, order2_o, dtu_id, dtu_apikay);
+
                 break;
             case DIRECTION_UP_LEFT://左上
             case DIRECTION_UP_RIGHT://右上
@@ -932,10 +933,10 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
                 push(order4_c, order4_c, dtu_id, dtu_apikay);
                 break;
             case 3:
-                push(order2_c, order2_c, dtu_id, dtu_apikay);
+                push(order1_c, order1_c, dtu_id, dtu_apikay);
                 break;
             case 4:
-                push(order1_c, order1_c, dtu_id, dtu_apikay);
+                push(order2_c, order2_c, dtu_id, dtu_apikay);
                 break;
             case 5:
                 mHandler.removeCallbacks(mRunnable);
@@ -1058,31 +1059,29 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
                     if (e2.getY() > mButtomHeight) {
                         mType = mType == 0 ? 1 : 0;
                         setControlTypeView();
+                    } else {
+                        toUp(e1,e2);
                     }
-                    Log.e("lm", "<--- left, left, go go go");
-                    return true;
-                }
-                if (e1.getY() - e2.getY() > FLIP_DISTANCE) {
-                    Log.e("lm", "向上滑...");
-                    if (mType == 0) {
-                        showMove(e1, e2);
-                        checkControl();
-                        mCurindex = 5;
-                        push(order3_o, order3_o, dtu_id, dtu_apikay);
-                        mHandler.postDelayed(mRunnable, 3000);
-                    }
+                    Log.e("lm", "向左滑...");
                     return true;
                 }
                 if (e2.getX() - e1.getX() > FLIP_DISTANCE) {
                     if (e2.getY() > mButtomHeight) {
                         mType = mType == 0 ? 1 : 0;
                         setControlTypeView();
+                    } else {
+                        toUp(e1,e2);
                     }
 
-                    Log.e("lm", "right, right, go go go --->");  //忽然觉得这个log好智障...
+                    Log.e("lm", "向右滑...");  //忽然觉得这个log好智障...
                     return true;
                 }
 
+                if (e1.getY() - e2.getY() > FLIP_DISTANCE) {
+                    Log.e("lm", "向上滑...");
+                    toUp(e1,e2);
+                    return true;
+                }
                 if (e2.getY() - e1.getY() > FLIP_DISTANCE) {
                     Log.e("lm", "向下滑...");
                     return true;
@@ -1096,7 +1095,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
             @Override
             public boolean onDown(MotionEvent e) {
                 // TODO Auto-generated method stub
-                return false;
+                return true;
             }
         });
         mView.setOnTouchListener(new View.OnTouchListener() {
@@ -1107,6 +1106,17 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
         });
     }
 
+
+    private void toUp(MotionEvent e1, MotionEvent e2)
+    {
+        if (mType == 0) {
+            showMove(e1, e2);
+            checkControl();
+            mCurindex = 5;
+            push(order3_o, order3_o, dtu_id, dtu_apikay);
+            mHandler.postDelayed(mRunnable, 3000);
+        }
+    }
     private MediaPlayer mMediaPlayer;
 
     //播放甩杆语音

@@ -43,7 +43,7 @@ public class VerificationCodeFragment extends BaseFragment<VerificationCodeView,
     private String mAuthorization;
     private UserInfoBean mUserInfoBean;
     private String mPhone;
-    private String mIMEI;
+//    private String mIMEI;
 
     private TextView mPhoneTv;
     private TextView mErrorTv;
@@ -116,7 +116,7 @@ public class VerificationCodeFragment extends BaseFragment<VerificationCodeView,
 
         mVerificationCodePresenter.setCountDown();
 
-        AndPermission.with(mActivity).runtime()
+      /*  AndPermission.with(mActivity).runtime()
                 .permission(Manifest.permission.READ_PHONE_STATE)
                 .rationale(new RuntimeUtils())
                 .onGranted(new Action<List<String>>() {
@@ -135,7 +135,7 @@ public class VerificationCodeFragment extends BaseFragment<VerificationCodeView,
 
                         }
                     }
-                }).start();
+                }).start();*/
         mVCET.setOnVerificationCodeChangedListener(mVerificationCodePresenter.mOnVerificationCodeChangedListener);
 
         if (mUserInfoBean != null) {
@@ -220,7 +220,7 @@ public class VerificationCodeFragment extends BaseFragment<VerificationCodeView,
 //        }
         else if (mPageType == 1) {
 //            showDialog(getString(R.string.LOADING));
-            mVerificationCodePresenter.getLogin(mPhone, mVCET.getText().toString().trim(), mIMEI);
+            mVerificationCodePresenter.getLogin(mPhone, mVCET.getText().toString().trim(), "");
         } else if (mPageType == 2) {
             if (TextUtils.isEmpty(mAuthorization)) {
                 mErrorTv.setVisibility(View.VISIBLE);
