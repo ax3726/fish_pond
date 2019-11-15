@@ -32,7 +32,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -114,9 +113,9 @@ import static com.umeng.socialize.utils.ContextUtil.getContext;
 
 public class UserFishingActivity extends BaseActivity<UserFishingActivityView, UserFishingActivityPresenter> implements UserFishingActivityView, View.OnTouchListener, ITXLivePlayListener {
     private Toolbar          toolbar;
-    private Button           btn_close;
-    private Button           btn_to_smaller;
-    private Button           btn_to_help;
+    private ImageView        btn_close;
+    private ImageView        btn_to_smaller;
+    private ImageView        btn_to_help;
     private LinearLayout     ll_top_menu;
     private TextView         tv_msg_tips;
     private TextView         tv_recharge;
@@ -129,11 +128,11 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
     private TextView         tv_onlookers;
     private ImageView        iv_share;
     private LinearLayout     ll_right_menu;
-    private Button           btn_one;
-    private Button           btn_thr;
-    private Button           btn_fou;
-    private Button           btn_fiv;
-    private Button           btn_two;
+    private TextView           btn_one;
+    private TextView           btn_thr;
+    private TextView           btn_fou;
+    private TextView           btn_fiv;
+    private TextView           btn_two;
     private LinearLayout     ll_bottom_menu;
     private RelativeLayout   rl_fish_num;
     private RelativeLayout   rl_fish_num_layout;
@@ -143,7 +142,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
     private RelativeLayout rl_get_Fish;
     private RelativeLayout rl_share_center;
     private TextView       tv_get_fish_coin;
-    private Button         btn_shere;
+    private TextView         btn_shere;
     private ImageView      iv_share_cancel;
 
     private FrameLayout    fl_root_layout;
@@ -436,9 +435,9 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         ImmersionBar.setTitleBar(this, toolbar);
         mView = (TXCloudVideoView) findViewById(R.id.video_view);
-        btn_close = (Button) findViewById(R.id.btn_close);
-        btn_to_smaller = (Button) findViewById(R.id.btn_to_smaller);
-        btn_to_help = (Button) findViewById(R.id.btn_to_help);
+        btn_close = findViewById(R.id.btn_close);
+        btn_to_smaller = findViewById(R.id.btn_to_smaller);
+        btn_to_help = findViewById(R.id.btn_to_help);
         ll_top_menu = (LinearLayout) findViewById(R.id.ll_top_menu);
         tv_msg_tips = (TextView) findViewById(R.id.tv_msg_tips);
         tv_recharge = (TextView) findViewById(R.id.tv_recharge);
@@ -451,11 +450,11 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
         tv_onlookers = (TextView) findViewById(R.id.tv_onlookers);
         iv_share = (ImageView) findViewById(R.id.iv_share);
         ll_right_menu = (LinearLayout) findViewById(R.id.ll_right_menu);
-        btn_one = (Button) findViewById(R.id.btn_one);
-        btn_thr = (Button) findViewById(R.id.btn_thr);
-        btn_fou = (Button) findViewById(R.id.btn_fou);
-        btn_fiv = (Button) findViewById(R.id.btn_fiv);
-        btn_two = (Button) findViewById(R.id.btn_two);
+        btn_one =  findViewById(R.id.btn_one);
+        btn_thr =  findViewById(R.id.btn_thr);
+        btn_fou =  findViewById(R.id.btn_fou);
+        btn_fiv =  findViewById(R.id.btn_fiv);
+        btn_two = findViewById(R.id.btn_two);
         ll_bottom_menu = (LinearLayout) findViewById(R.id.ll_bottom_menu);
         rl_fish_num = (RelativeLayout) findViewById(R.id.rl_fish_num);
         rl_fish_num_layout = (RelativeLayout) findViewById(R.id.rl_fish_num_layout);
@@ -1022,8 +1021,8 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
 
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
-                // TODO Auto-generated method stub
-                return false;
+                onMenueCanshow();
+                return true;
             }
 
             @Override
@@ -1060,7 +1059,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
                         mType = mType == 0 ? 1 : 0;
                         setControlTypeView();
                     } else {
-                        toUp(e1,e2);
+                        toUp(e1, e2);
                     }
                     Log.e("lm", "向左滑...");
                     return true;
@@ -1070,7 +1069,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
                         mType = mType == 0 ? 1 : 0;
                         setControlTypeView();
                     } else {
-                        toUp(e1,e2);
+                        toUp(e1, e2);
                     }
 
                     Log.e("lm", "向右滑...");  //忽然觉得这个log好智障...
@@ -1079,7 +1078,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
 
                 if (e1.getY() - e2.getY() > FLIP_DISTANCE) {
                     Log.e("lm", "向上滑...");
-                    toUp(e1,e2);
+                    toUp(e1, e2);
                     return true;
                 }
                 if (e2.getY() - e1.getY() > FLIP_DISTANCE) {
@@ -1107,8 +1106,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
     }
 
 
-    private void toUp(MotionEvent e1, MotionEvent e2)
-    {
+    private void toUp(MotionEvent e1, MotionEvent e2) {
         if (mType == 0) {
             showMove(e1, e2);
             checkControl();
@@ -1117,6 +1115,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
             mHandler.postDelayed(mRunnable, 3000);
         }
     }
+
     private MediaPlayer mMediaPlayer;
 
     //播放甩杆语音
@@ -1224,25 +1223,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
                 }
                 break;
             case R.id.video_view:
-                HideKeyboard(fl_root_layout);
-                isMenueCanshow = !isMenueCanshow;
-                if (isMenueCanshow) {
-//                    ll_top_menu.setVisibility(View.VISIBLE);
-                    ll_right_menu.setVisibility(View.VISIBLE);
-                    rl_fish_num.setVisibility(View.VISIBLE);
-                    badgeVie.setVisibility(View.VISIBLE);
-                    li_chat.setVisibility(View.VISIBLE);
-                    iv_chat.setVisibility(View.VISIBLE);
-//                    ll_bottom_menu.setVisibility(View.VISIBLE);
-                } else {
-//                    ll_top_menu.setVisibility(View.GONE);
-                    ll_right_menu.setVisibility(View.GONE);
-                    rl_fish_num.setVisibility(View.GONE);
-                    badgeVie.setVisibility(View.INVISIBLE);
-                    li_chat.setVisibility(View.INVISIBLE);
-                    iv_chat.setVisibility(View.INVISIBLE);
-//                    ll_bottom_menu.setVisibility(View.GONE);
-                }
+                onMenueCanshow();
                 break;
             case R.id.tv_confrim_btn:
                 sendMsg("message", et_input_message.getText().toString().trim());
@@ -1256,6 +1237,28 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
                 break;
             default:
                 break;
+        }
+    }
+    private void onMenueCanshow()
+    {
+        HideKeyboard(fl_root_layout);
+        isMenueCanshow = !isMenueCanshow;
+        if (isMenueCanshow) {
+//                    ll_top_menu.setVisibility(View.VISIBLE);
+            ll_right_menu.setVisibility(View.VISIBLE);
+            rl_fish_num.setVisibility(View.VISIBLE);
+            badgeVie.setVisibility(View.VISIBLE);
+            li_chat.setVisibility(View.VISIBLE);
+            iv_chat.setVisibility(View.VISIBLE);
+//                    ll_bottom_menu.setVisibility(View.VISIBLE);
+        } else {
+//                    ll_top_menu.setVisibility(View.GONE);
+            ll_right_menu.setVisibility(View.GONE);
+            rl_fish_num.setVisibility(View.GONE);
+            badgeVie.setVisibility(View.INVISIBLE);
+            li_chat.setVisibility(View.INVISIBLE);
+            iv_chat.setVisibility(View.INVISIBLE);
+//                    ll_bottom_menu.setVisibility(View.GONE);
         }
     }
 

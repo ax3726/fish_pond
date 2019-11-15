@@ -76,7 +76,7 @@ public class SplashActivity extends BaseActivity<SplashView, SplashPresenter> im
         mSplashPresenter.removeCountDown();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        overridePendingTransition(R.anim.screen_zoom_in, R.anim.screen_zoom_out);
+//        overridePendingTransition(R.anim.screen_zoom_in, R.anim.screen_zoom_out);
         finish();
     }
 

@@ -99,7 +99,7 @@ public class LoginFragment extends BaseFragment<LoginView, LoginPresenter> imple
         mXBImageView.setOnClickListener(this);
         setAuthorization();
 
-        AndPermission.with(mActivity).runtime()
+     /*   AndPermission.with(mActivity).runtime()
                 .permission(Manifest.permission.READ_PHONE_STATE)
                 .rationale(new RuntimeUtils())
                 .onGranted(new Action<List<String>>() {
@@ -118,7 +118,7 @@ public class LoginFragment extends BaseFragment<LoginView, LoginPresenter> imple
 
                         }
                     }
-                }).start();
+                }).start();*/
     }
 
     private void setAuthorization() {
