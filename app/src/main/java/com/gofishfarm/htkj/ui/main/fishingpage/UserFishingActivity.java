@@ -989,7 +989,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
             default:
                 break;
         }
-        return false;
+        return true;
     }
 
 
@@ -1023,6 +1023,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
             public boolean onSingleTapUp(MotionEvent e) {
                 onMenueCanshow();
                 return true;
+
             }
 
             @Override
@@ -1093,8 +1094,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
 
             @Override
             public boolean onDown(MotionEvent e) {
-                // TODO Auto-generated method stub
-                return true;
+                return false;
             }
         });
         mView.setOnTouchListener(new View.OnTouchListener() {
@@ -1362,7 +1362,7 @@ public class UserFishingActivity extends BaseActivity<UserFishingActivityView, U
 //                    InputStream inputStream = new ByteArrayInputStream(addBytes(new BASE64Encoder().decode(order), longToByte(System.currentTimeMillis())));
 //                    InputStream inputStream = new ByteArrayInputStream(addBytes(new BASE64Encoder().decode(order), hexStringToByte(Long.toHexString(System.currentTimeMillis()))));
                     InputStream inputStream = new ByteArrayInputStream(addBytes(new BASE64Encoder().decode(order), hexStringToByte("00000" + Long.toHexString(System.currentTimeMillis()))));
-                    RequestBody requestBody = requestBodyCreate(MEDIA_TYPE_MARKDOWN, inputStream);
+                        RequestBody requestBody = requestBodyCreate(MEDIA_TYPE_MARKDOWN, inputStream);
                     Request request = new Request.Builder()
                             .url(orderUrl)
                             .post(requestBody)
