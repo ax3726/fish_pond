@@ -94,6 +94,10 @@ android {
             resValue "string", "app_name", "钓鱼人上鱼-沙发渔霸"
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "android"]
         }
+        android7 {
+            resValue "string", "app_name", "沙发渔霸钓鱼-钓鱼人上鱼神器"
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "android"]
+        }
 
 
 
